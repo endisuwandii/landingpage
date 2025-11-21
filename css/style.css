@@ -1,244 +1,199 @@
-/* css/style.css
-    PortalEkonomi — Styling utama
-    Struktur: variables, layout, components, utilities, responsive
-*/
+/* =========================================================
+   PortalEkonomi — Clean Spacing & No Hover (Except Navbar)
+   ========================================================= */
 
-/* ===== Variables ===== */
+/* ---------------- VARIABLES ---------------- */
 :root {
   --accent: #0b6efd;
+  --accent-dark: #095ee0;
   --muted: #6b7280;
-  --bg: #f5f7fb;
-  --card: #ffffff;
-  --glass: rgba(11, 110, 253, 0.06);
-  --radius: 12px;
-  /* Menjaga lebar maksimum container tetap konsisten */
-  --container: 1100px;
+  --bg: #f6f8fc;
   --text: #0b1220;
+  --card: #ffffff;
+  --radius: 14px;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --container: 1150px;
 }
 
-/* ===== Base ===== */
+/* ---------------- BASE ---------------- */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
-/* Memastikan elemen mengambil seluruh ruang yang tersedia */
-html,
 body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  /* Menggunakan font yang umum tersedia di berbagai sistem */
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-  /* Gradien latar belakang yang lembut */
-  background: linear-gradient(180deg, #f7fbff 0%, #f5f7fb 100%);
+  font-family: Inter, sans-serif;
+  background: var(--bg);
   color: var(--text);
-  /* Memperhalus rendering font */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* Ketinggian baris yang nyaman untuk dibaca */
-  line-height: 1.5;
+  line-height: 1.6;
 }
 .container {
-  /* Mengatur lebar maksimum untuk mencegah konten terlalu lebar di layar besar */
   max-width: var(--container);
-  /* Tengah secara horizontal */
   margin: 0 auto;
-  /* Padding horizontal dan vertikal untuk menjaga jarak dari tepi layar */
-  padding: 20px;
+  padding: 32px 20px;
 }
-/* Menambahkan breakpoint ekstra untuk perangkat yang sangat kecil */
+
+.section {
+  padding: 60px 0;
+}
 @media (max-width: 480px) {
   .container {
-    /* Mengurangi padding di layar yang sangat kecil agar konten memiliki lebih banyak ruang */
-    padding: 10px;
+    padding: 20px;
+  }
+  .section {
+    padding: 40px 0;
   }
 }
 
----
-
-/* ===== Header (Perubahan Minimal) ===== */
+/* ---------------- HEADER ---------------- */
 .site-header {
   position: sticky;
   top: 0;
-  background: rgba(255, 255, 255, 0.9); /* Sedikit lebih opaque */
-  backdrop-filter: blur(8px); /* Blur sedikit ditingkatkan */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Garis batas lebih jelas */
-  z-index: 40;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 50;
 }
+
 .header-inner {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 12px 0;
+  align-items: center;
+  padding: 18px 0;
 }
+
+.logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), #6ea2ff);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .brand {
   display: flex;
   align-items: center;
   gap: 12px;
-  text-decoration: none;
   color: inherit;
-}
-.logo {
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--accent), #6f9cff);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 700;
-}
-.brand-text small {
-  display: block;
-  color: var(--muted);
-  font-size: 12px;
-}
-.main-nav a {
-  margin-left: 16px;
   text-decoration: none;
-  color: var(--muted);
-  font-weight: 600;
-  padding: 8px;
-  border-radius: 8px;
-  /* Transisi yang lebih halus saat hover */
-  transition: color 0.2s, background 0.2s;
-}
-.main-nav a:hover {
-  color: var(--accent);
-  background: var(--glass);
 }
 
-/* Penyesuaian Header Responsif */
+.main-nav {
+  display: flex;
+  gap: 16px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+/* HOVER hanya NAVBAR */
+.main-nav a:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--accent);
+}
+
+/* RESPONSIVE NAV */
 @media (max-width: 720px) {
-  .main-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 8px;
-    justify-content: flex-start; /* Navigasi mulai dari kiri */
-  }
   .header-inner {
     flex-direction: column;
     align-items: flex-start;
+    gap: 12px;
   }
 }
 
----
-
-/* ===== Hero (Perbaikan Tombol Responsif) ===== */
-.section {
-  padding: 48px 0;
-}
+/* ---------------- HERO ---------------- */
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 24px;
+  grid-template-columns: 1fr 340px;
+  gap: 40px;
   align-items: center;
 }
-.hero-content .kicker {
-  text-transform: uppercase;
-  color: var(--muted);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-}
-h1 {
-  font-size: 32px;
-  margin: 10px 0;
-}
-.lead {
-  color: var(--muted);
-  max-width: 60%;
-}
-.hero-actions {
-  /* Di desktop/tablet, tombol tetap inline */
-  display: flex;
-  gap: 12px;
-  margin-top: 18px;
-}
-.features {
-  display: flex;
-  gap: 12px;
-  margin-top: 18px;
-  list-style: none;
-  padding: 0;
-  flex-wrap: wrap;
-}
-.feature-item {
-  background: var(--card);
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  font-weight: 600;
-}
-
-/* Penyesuaian Hero Responsif */
-@media (max-width: 980px) {
-  .hero-grid {
-    grid-template-columns: 1fr 320px;
-  }
-  .lead {
-    max-width: 100%;
-  }
-}
-@media (max-width: 720px) {
+@media (max-width: 900px) {
   .hero-grid {
     grid-template-columns: 1fr;
-  }
-  .lead {
-    max-width: 100%;
-  }
-  /* PERBAIKAN: Membuat tombol Hero menumpuk dan menjadi lebar penuh di ponsel */
-  .hero-actions {
-    flex-direction: column; /* Tombol menumpuk secara vertikal */
-    gap: 10px; /* Mengurangi jarak vertikal */
-  }
-  /* Memastikan tombol Hero mengambil lebar penuh */
-  .hero-actions .btn {
-    width: 100%;
-    text-align: center; /* Teks tombol menjadi rata tengah */
-  }
-}
-@media (max-width: 480px) {
-  h1 {
-    font-size: 28px;
-  }
-  .section {
-    padding: 30px 0;
+    gap: 32px;
   }
 }
 
----
+.kicker {
+  text-transform: uppercase;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
 
-/* ===== Cards & Grid (Sudah Responsif) ===== */
+h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 10px 0 16px;
+}
+
+.lead {
+  color: var(--muted);
+  max-width: 520px;
+  margin-bottom: 24px;
+}
+
+/* Buttons clean */
+.btn {
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  transition: none; /* NO hover effect */
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn.ghost {
+  background: #eef1f8;
+  color: var(--accent);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+}
+
+/* ---------------- CARDS ---------------- */
 .card {
-  background: var(--card);
-  padding: 18px;
-  border-radius: 12px;
-  /* Box shadow yang lebih modern dan lembut */
-  box-shadow: 0 4px 12px rgba(16, 24, 40, 0.06);
+  background: white;
+  padding: 24px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
+
+/* NO HOVER FOR CARDS */
+.card:hover {
+  transform: none !important;
+}
+
+/* ---------------- GRID ---------------- */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 18px;
-}
-.news-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.news-list li {
-  padding: 10px 0;
-  border-bottom: 1px dashed rgba(0, 0, 0, 0.04);
-  font-size: 14px;
-}
-.muted {
-  color: var(--muted);
+  gap: 22px;
 }
 
-/* Penyesuaian Grid Responsif */
 @media (max-width: 980px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
@@ -250,158 +205,57 @@ h1 {
   }
 }
 
----
-
-/* ===== Simulator (Sudah Responsif) ===== */
+/* ---------------- SIMULATOR ---------------- */
 .sim-grid {
   display: grid;
   grid-template-columns: 1fr 320px;
-  gap: 18px;
-  align-items: start;
+  gap: 26px;
 }
-.sim-card input,
-.sim-card select,
-.contact-card input,
-.contact-card textarea {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  /* Border yang sedikit lebih halus */
-  border: 1px solid rgba(2, 6, 23, 0.1);
-  margin-bottom: 10px;
-  background: var(--bg); /* Menggunakan variabel background untuk input */
-  transition: border-color 0.2s;
-}
-/* Efek fokus yang clean */
-.sim-card input:focus,
-.sim-card select:focus,
-.contact-card input:focus,
-.contact-card textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(11, 110, 253, 0.2);
-}
-
-.calc-result {
-  margin-top: 12px;
-  padding: 12px;
-  border-radius: 10px;
-  background: linear-gradient(
-    180deg,
-    rgba(11, 110, 253, 0.04),
-    rgba(11, 110, 253, 0.02)
-  );
-  border: 1px solid rgba(11, 110, 253, 0.1); /* Tambahkan border lembut */
-}
-
-/* Penyesuaian Simulator Responsif */
-@media (max-width: 980px) {
-  .sim-grid {
-    grid-template-columns: 1fr 280px;
-  }
-}
-@media (max-width: 720px) {
+@media (max-width: 900px) {
   .sim-grid {
     grid-template-columns: 1fr;
   }
 }
 
----
+.sim-card input,
+.sim-card select,
+.contact-card input,
+.contact-card textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: white;
+}
 
-/* ===== Contact (Sudah Responsif) ===== */
+/* ---------------- CONTACT ---------------- */
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 18px;
+  grid-template-columns: 1fr 320px;
+  gap: 26px;
 }
-.contact-card .contact-msg {
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 8px;
-  display: none;
-}
-
-/* Penyesuaian Kontak Responsif */
 @media (max-width: 720px) {
   .contact-grid {
     grid-template-columns: 1fr;
   }
 }
 
----
-
-/* ===== Utilities & Buttons (Penyempurnaan Style Tombol) ===== */
-.btn {
-  display: inline-block;
-  padding: 10px 16px; /* Padding ditingkatkan sedikit untuk area klik yang lebih baik */
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600; /* Sedikit lebih tipis dari 700 */
-  border: 1px solid rgba(2, 6, 23, 0.05);
-  cursor: pointer;
-  /* Transisi halus untuk semua properti tombol */
-  transition: all 0.2s ease;
-}
-.btn.primary {
-  background: var(--accent);
-  color: white;
-  border: none;
-  /* Efek bayangan yang bersih dan terangkat saat hover */
-  box-shadow: 0 4px 8px rgba(11, 110, 253, 0.3);
-}
-.btn.primary:hover {
-  background: #095ee0; /* Warna sedikit lebih gelap saat hover */
-  box-shadow: 0 6px 12px rgba(11, 110, 253, 0.4);
-  transform: translateY(-1px); /* Efek sedikit terangkat */
-}
-.btn.ghost {
-  background: transparent;
-  color: var(--accent);
-  border: 1px solid var(--accent);
-}
-.btn.ghost:hover {
-  background: var(--glass);
-  color: var(--accent);
-  border-color: var(--accent);
-}
-/* Style untuk tombol yang digunakan di form, agar mengambil lebar penuh */
-.sim-card button.btn,
-.contact-card button.btn {
-  width: 100%;
-  margin-top: 10px;
-}
-.small-link {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 700;
-}
-
-/* ===== Footer (Sudah Clean) ===== */
+/* ---------------- FOOTER ---------------- */
 .site-footer {
-  padding: 24px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.04);
-  margin-top: 40px;
   text-align: center;
-  color: var(--muted); /* Menggunakan warna muted untuk teks footer */
+  padding: 30px 0;
+  margin-top: 50px;
   font-size: 14px;
+  color: var(--muted);
 }
 
-/* ===== Reveal animation (Sudah Clean) ===== */
+/* ---------------- REVEAL ---------------- */
 .reveal {
   opacity: 0;
   transform: translateY(12px);
-  transition: all 520ms cubic-bezier(0.2, 0.9, 0.2, 1);
+  transition: 0.5s ease;
 }
 .reveal.visible {
   opacity: 1;
   transform: none;
-}
-
-/* ===== Responsive (Breakpoints Awal) (Dihapus karena duplikasi) ===== */
-
-/* ===== Small hover touchups (enhanced by JS) ===== */
-.card.hovered {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(16, 24, 40, 0.08);
-  transition: all 240ms ease;
 }
