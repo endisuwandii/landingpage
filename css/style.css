@@ -1,100 +1,434 @@
 /* css/style.css
-   PortalEkonomi — Styling utama
-   Struktur: variables, layout, components, utilities, responsive
+    PortalEkonomi — Styling utama
+    Struktur: variables, layout, components, utilities, responsive
 */
 
 /* ===== Variables ===== */
-:root{
+:root {
   --accent: #0b6efd;
   --muted: #6b7280;
   --bg: #f5f7fb;
   --card: #ffffff;
-  --glass: rgba(11,110,253,0.06);
+  --glass: rgba(11, 110, 253, 0.06);
   --radius: 12px;
+  /* Menjaga lebar maksimum container tetap konsisten */
   --container: 1100px;
   --text: #0b1220;
 }
 
 /* ===== Base ===== */
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
-  background: linear-gradient(180deg,#f7fbff 0%, #f5f7fb 100%);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  line-height:1.5;
+* {
+  box-sizing: border-box;
 }
-.container{max-width:var(--container);margin:0 auto;padding:20px}
+/* Memastikan elemen mengambil seluruh ruang yang tersedia */
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  /* Menggunakan font yang umum tersedia di berbagai sistem */
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  /* Gradien latar belakang yang lembut */
+  background: linear-gradient(180deg, #f7fbff 0%, #f5f7fb 100%);
+  color: var(--text);
+  /* Memperhalus rendering font */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Ketinggian baris yang nyaman untuk dibaca */
+  line-height: 1.5;
+}
+.container {
+  /* Mengatur lebar maksimum untuk mencegah konten terlalu lebar di layar besar */
+  max-width: var(--container);
+  /* Tengah secara horizontal */
+  margin: 0 auto;
+  /* Padding horizontal dan vertikal untuk menjaga jarak dari tepi layar */
+  padding: 20px;
+}
+/* Menambahkan breakpoint ekstra untuk perangkat yang sangat kecil */
+@media (max-width: 480px) {
+  .container {
+    /* Mengurangi padding di layar yang sangat kecil agar konten memiliki lebih banyak ruang */
+    padding: 10px;
+  }
+}
+
+---
 
 /* ===== Header ===== */
 /* Header is sticky and light — contains brand and navigation */
-.site-header{position:sticky;top:0;background:rgba(255,255,255,0.8);backdrop-filter: blur(6px);border-bottom:1px solid rgba(0,0,0,0.03);z-index:40}
-.header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
-.logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#6f9cff);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
-.brand-text small{display:block;color:var(--muted);font-size:12px}
-.main-nav a{margin-left:16px;text-decoration:none;color:var(--muted);font-weight:600;padding:8px;border-radius:8px}
-.main-nav a:hover{color:var(--accent);background:var(--glass)}
+.site-header {
+  /* Membuat header tetap terlihat saat menggulir */
+  position: sticky;
+  top: 0;
+  /* Latar belakang transparan dengan efek blur (glassmorphism) */
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(6px);
+  /* Garis tipis di bagian bawah */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  /* Memastikan header berada di atas elemen lain */
+  z-index: 40;
+}
+.header-inner {
+  /* Menggunakan Flexbox untuk penataan brand dan navigasi */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+.logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), #6f9cff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+}
+.brand-text small {
+  /* Memastikan teks kecil muncul di baris baru */
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+.main-nav a {
+  margin-left: 16px;
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 600;
+  padding: 8px;
+  border-radius: 8px;
+}
+.main-nav a:hover {
+  color: var(--accent);
+  background: var(--glass);
+}
+
+/* Menangani tata letak navigasi di layar yang sangat kecil */
+@media (max-width: 720px) {
+  .main-nav {
+    /* Navigasi sekarang akan dibungkus ke baris baru jika terlalu panjang */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    /* Memberi sedikit ruang di atas/bawah agar tidak menempel pada brand */
+    margin-top: 8px;
+  }
+  .header-inner {
+    /* Mengubah header menjadi tata letak vertikal di layar kecil */
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+---
 
 /* ===== Hero ===== */
-.section{padding:48px 0}
-.hero-grid{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:center}
-.hero-content .kicker{text-transform:uppercase;color:var(--muted);font-size:12px;letter-spacing:0.08em}
-h1{font-size:32px;margin:10px 0}
-.lead{color:var(--muted);max-width:60%}
-.hero-actions{display:flex;gap:12px;margin-top:18px}
-.features{display:flex;gap:12px;margin-top:18px;list-style:none;padding:0}
-.feature-item{background:var(--card);padding:8px 12px;border-radius:999px;border:1px solid rgba(0,0,0,0.04);font-weight:600}
+.section {
+  padding: 48px 0;
+}
+.hero-grid {
+  /* Layout default: 1 kolom konten dan 1 kolom gambar/ilustrasi */
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 24px;
+  align-items: center;
+}
+.hero-content .kicker {
+  text-transform: uppercase;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+h1 {
+  font-size: 32px;
+  margin: 10px 0;
+}
+.lead {
+  color: var(--muted);
+  /* Membatasi lebar teks utama di layar besar */
+  max-width: 60%;
+}
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+.features {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+  list-style: none;
+  padding: 0;
+}
+/* Menggunakan flex-wrap untuk daftar fitur */
+.features {
+  flex-wrap: wrap;
+}
+.feature-item {
+  background: var(--card);
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  font-weight: 600;
+}
+
+/* Penyesuaian Hero untuk tablet dan layar menengah */
+@media (max-width: 980px) {
+  .hero-grid {
+    /* Sedikit menyesuaikan lebar kolom untuk perangkat tablet */
+    grid-template-columns: 1fr 320px;
+  }
+  .lead {
+    /* Mengizinkan teks utama mengambil lebar penuh di layar yang lebih sempit */
+    max-width: 100%;
+  }
+}
+/* Penyesuaian Hero untuk ponsel */
+@media (max-width: 720px) {
+  .hero-grid {
+    /* Menumpuk kolom menjadi satu baris agar konten terbaca secara vertikal */
+    grid-template-columns: 1fr;
+    /* Memastikan gambar/ilustrasi (kolom kedua) ditampilkan di bawah konten utama */
+    flex-direction: column-reverse; /* Jika menggunakan flex, tapi di sini menggunakan grid */
+  }
+  .lead {
+    max-width: 100%;
+  }
+}
+/* Mengurangi ukuran font untuk ponsel yang sangat kecil */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 28px;
+  }
+  .section {
+    /* Mengurangi padding vertikal untuk tampilan yang lebih ringkas */
+    padding: 30px 0;
+  }
+}
+
+---
 
 /* ===== Cards & Grid ===== */
-.card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(16,24,40,0.04)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
-.news-list{list-style:none;padding:0;margin:0}
-.news-list li{padding:10px 0;border-bottom:1px dashed rgba(0,0,0,0.04);font-size:14px}
-.muted{color:var(--muted)}
+.card {
+  background: var(--card);
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(16, 24, 40, 0.04);
+}
+.grid {
+  /* Layout default: 3 kolom untuk menampilkan berita/kartu */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 18px;
+}
+.news-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.news-list li {
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.04);
+  font-size: 14px;
+}
+.muted {
+  color: var(--muted);
+}
+
+/* Penyesuaian Grid untuk layar menengah (tablet) */
+@media (max-width: 980px) {
+  .grid {
+    /* Mengubah menjadi 2 kolom untuk tablet */
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* Penyesuaian Grid untuk layar kecil (ponsel) */
+@media (max-width: 720px) {
+  .grid {
+    /* Mengubah menjadi 1 kolom agar setiap kartu mengambil lebar penuh dan mudah dibaca di ponsel */
+    grid-template-columns: 1fr;
+  }
+}
+
+---
 
 /* ===== Simulator ===== */
-.sim-grid{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start}
-.sim-card input, .sim-card select, .contact-card input, .contact-card textarea{
-  width:100%;padding:10px;border-radius:8px;border:1px solid rgba(2,6,23,0.06);margin-bottom:10px;background:transparent;
+.sim-grid {
+  /* Layout default: 1 kolom konten simulasi dan 1 kolom sidebar/hasil */
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 18px;
+  align-items: start;
 }
-.calc-result{margin-top:12px;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(11,110,253,0.04), rgba(11,110,253,0.02))}
+.sim-card input,
+.sim-card select,
+.contact-card input,
+.contact-card textarea {
+  /* Input mengambil lebar penuh di kolomnya */
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(2, 6, 23, 0.06);
+  margin-bottom: 10px;
+  background: transparent;
+}
+.calc-result {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(11, 110, 253, 0.04),
+    rgba(11, 110, 253, 0.02)
+  );
+}
+
+/* Penyesuaian Simulator untuk tablet/layar menengah */
+@media (max-width: 980px) {
+  .sim-grid {
+    /* Sedikit mengecilkan kolom sidebar/hasil untuk layar menengah */
+    grid-template-columns: 1fr 280px;
+  }
+}
+/* Penyesuaian Simulator untuk ponsel */
+@media (max-width: 720px) {
+  .sim-grid {
+    /* Menumpuk kolom menjadi 1 baris di ponsel */
+    grid-template-columns: 1fr;
+  }
+}
+
+---
 
 /* ===== Contact ===== */
-.contact-grid{display:grid;grid-template-columns:1fr 300px;gap:18px}
-.contact-card .contact-msg{margin-top:10px;padding:10px;border-radius:8px;display:none}
+.contact-grid {
+  /* Layout default: 1 kolom form kontak dan 1 kolom info kontak */
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 18px;
+}
+.contact-card .contact-msg {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  display: none;
+}
+
+/* Penyesuaian Kontak untuk ponsel */
+@media (max-width: 720px) {
+  .contact-grid {
+    /* Menumpuk kolom menjadi 1 baris di ponsel */
+    grid-template-columns: 1fr;
+  }
+}
+
+---
 
 /* ===== Utilities & Buttons ===== */
-.btn{display:inline-block;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;border:1px solid rgba(2,6,23,0.05);cursor:pointer}
-.btn.primary{background:var(--accent);color:white;border:none}
-.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
-.small-link{color:var(--accent);text-decoration:none;font-weight:700}
+.btn {
+  /* Properti yang memastikan tombol merespons area klik */
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  border: 1px solid rgba(2, 6, 23, 0.05);
+  cursor: pointer;
+}
+.btn.primary {
+  background: var(--accent);
+  color: white;
+  border: none;
+}
+.btn.ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+.small-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+}
 
 /* ===== Footer ===== */
-.site-footer{padding:24px 0;border-top:1px solid rgba(0,0,0,0.04);margin-top:40px;text-align:center}
+.site-footer {
+  padding: 24px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  margin-top: 40px;
+  text-align: center;
+}
 
 /* ===== Reveal animation ===== */
-.reveal{opacity:0;transform:translateY(12px);transition:all 520ms cubic-bezier(.2,.9,.2,1)}
-.reveal.visible{opacity:1;transform:none}
-
-/* ===== Responsive ===== */
-@media (max-width:980px){
-  .grid{grid-template-columns:repeat(2,1fr)}
-  .sim-grid{grid-template-columns:1fr 280px}
-  .lead{max-width:100%}
-  .hero-grid{grid-template-columns:1fr 320px}
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 520ms cubic-bezier(0.2, 0.9, 0.2, 1);
 }
-@media (max-width:720px){
-  .hero-grid{grid-template-columns:1fr}
-  .sim-grid{grid-template-columns:1fr}
-  .contact-grid{grid-template-columns:1fr}
-  .grid{grid-template-columns:1fr}
-  .main-nav{display:flex;flex-wrap:wrap;gap:8px}
-  .lead{max-width:100%}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ===== Responsive (Breakpoints Awal) ===== */
+
+/* Catatan: Breakpoint 980px dan 720px sudah didefinisikan di bawah.
+   Breakpoint ini berfungsi untuk "mengecilkan" dari tampilan desktop. */
+@media (max-width: 980px) {
+  /* Di sini, penyesuaian untuk tampilan Tablet/Layar Menengah dilakukan */
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sim-grid {
+    grid-template-columns: 1fr 280px;
+  }
+  .lead {
+    max-width: 100%;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr 320px;
+  }
+}
+@media (max-width: 720px) {
+  /* Di sini, penyesuaian untuk tampilan Mobile/Ponsel dilakukan */
+  .hero-grid {
+    grid-template-columns: 1fr;
+  } /* Menumpuk di ponsel */
+  .sim-grid {
+    grid-template-columns: 1fr;
+  } /* Menumpuk di ponsel */
+  .contact-grid {
+    grid-template-columns: 1fr;
+  } /* Menumpuk di ponsel */
+  .grid {
+    grid-template-columns: 1fr;
+  } /* Menumpuk di ponsel */
+  /* Navigasi disesuaikan untuk layar kecil */
+  .main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .lead {
+    max-width: 100%;
+  }
 }
 
 /* ===== Small hover touchups (enhanced by JS) ===== */
-.card.hovered{transform:translateY(-6px);box-shadow:0 18px 40px rgba(16,24,40,0.08);transition:all 240ms ease}
+.card.hovered {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(16, 24, 40, 0.08);
+  transition: all 240ms ease;
+}
