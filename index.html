@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portal Ekonomi — Landing Page</title>
+  <meta name="description" content="Portal Ekonomi: berita, edukasi, dan alat simulasi investasi untuk pemula." />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <div class="logo"><i class="fa-solid fa-coins"></i></div>
+        <div class="brand-text">
+          <strong>PortalEkonomi</strong>
+          <small>Berita · Edukasi · Investasi</small>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html#berita">Berita</a>
+        <a href="index.html#edukasi">Edukasi</a>
+        <a href="index.html#simulator">Simulator</a>
+        <a href="index.html#kontak">Kontak</a>
+        <a class="btn primary" href="pages/about.html">Tentang</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero section" id="home">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <p class="kicker">Marketplace Finansial</p>
+          <h1>Belajar dan Ambil Keputusan Finansial Lebih Pintar</h1>
+          <p class="lead">Berita ekonomi terkini, panduan investasi untuk pemula, dan alat simulasi untuk merencanakan masa depan finansialmu.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#simulator">Coba Simulator</a>
+            <a class="btn ghost" href="#edukasi">Pelajari</a>
+          </div>
+
+          <ul class="features">
+            <li class="feature-item">Berita & Analisis</li>
+            <li class="feature-item">Simulator Investasi</li>
+            <li class="feature-item">Panduan Pajak & Keuangan</li>
+          </ul>
+        </div>
+
+        <aside class="hero-aside card reveal">
+          <h3>Berita Terkini</h3>
+          <ul class="news-list">
+            <li><strong>Pertumbuhan Ekonomi Triwulan III</strong><span class="muted"> — 2 jam lalu</span></li>
+            <li><strong>Dampak Inflasi untuk UMKM</strong><span class="muted"> — 1 hari lalu</span></li>
+            <li><strong>Fintech: Akses Keuangan Meningkat</strong><span class="muted"> — 3 hari lalu</span></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- EDUKASI -->
+    <section id="edukasi" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Edukasi Ekonomi</h2>
+          <p class="muted">Artikel singkat untuk membangun dasar literasi finansial.</p>
+        </div>
+
+        <div class="grid reveal">
+          <article class="card">
+            <h3>Dasar Investasi</h3>
+            <p>Pengenalan instrumen investasi, risiko, dan strategi sederhana.</p>
+            <a class="small-link" href="pages/education.html">Baca selengkapnya →</a>
+          </article>
+
+          <article class="card">
+            <h3>Mengelola Utang</h3>
+            <p>Strategi melunasi utang dan menjaga rasio utang sehat.</p>
+            <a class="small-link" href="pages/education.html">Baca selengkapnya →</a>
+          </article>
+
+          <article class="card">
+            <h3>Anggaran & Tabungan</h3>
+            <p>Cara membuat anggaran sederhana untuk menabung konsisten.</p>
+            <a class="small-link" href="pages/education.html">Baca selengkapnya →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIMULATOR -->
+    <section id="simulator" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Simulator Investasi</h2>
+          <p class="muted">Proyeksikan nilai investasi dengan kontribusi bulanan — menggunakan bunga majemuk.</p>
+        </div>
+
+        <div class="sim-grid reveal">
+          <div class="card sim-card">
+            <h3>Estimasi Pertumbuhan Investasi</h3>
+
+            <label for="principal">Jumlah Investasi Awal (Rp)</label>
+            <input id="principal" type="number" min="0" value="1000000">
+
+            <label for="contrib">Kontribusi Bulanan (Rp)</label>
+            <input id="contrib" type="number" min="0" value="500000">
+
+            <label for="rate">Estimasi Return Tahunan (%)</label>
+            <input id="rate" type="number" min="0" step="0.1" value="8">
+
+            <label for="years">Jangka Waktu (tahun)</label>
+            <input id="years" type="number" min="1" max="50" value="10">
+
+            <label for="currency">Tampilkan juga dalam mata uang:</label>
+            <select id="currency">
+              <option value="IDR" selected>IDR (Rp)</option>
+              <option value="USD">USD ($)</option>
+              <option value="EUR">EUR (€)</option>
+            </select>
+
+            <button id="calcBtn" class="btn primary">Hitung Proyeksi</button>
+
+            <div id="result" class="calc-result" aria-live="polite" style="display:none"></div>
+          </div>
+
+          <aside class="card info-card">
+            <h4>Sumber & Materi</h4>
+            <p class="muted">Unduh file tugas yang kamu upload sebagai referensi.</p>
+            <p><a class="btn" href="/mnt/data/TugasIPBW.pdf" target="_blank"><i class="fa-regular fa-file-pdf"></i> Buka File Tugas (PDF)</a></p>
+            <hr>
+            <h4>Quick Tips</h4>
+            <ul class="muted">
+              <li>Perhitungkan inflasi untuk return riil.</li>
+              <li>Diversifikasi untuk mengurangi risiko.</li>
+              <li>Pilih horizon investasi sesuai tujuan.</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- BERITA -->
+    <section id="berita" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Berita & Analisis</h2>
+        </div>
+
+        <div class="grid reveal">
+          <article class="card">
+            <h3>Inflasi: Dampak Terhadap Kelas Menengah</h3>
+            <p class="muted">Analisis tentang bagaimana inflasi mempengaruhi daya beli.</p>
+          </article>
+
+          <article class="card">
+            <h3>Sektor Digital Finance Tumbuh Pesat</h3>
+            <p class="muted">Perkembangan fintech & implikasinya bagi akses keuangan.</p>
+          </article>
+
+          <article class="card">
+            <h3>Panduan Pajak untuk Freelancer</h3>
+            <p class="muted">Ringkasan kewajiban pajak dan cara pelaporan penghasilan sampingan.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section id="kontak" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Kontak</h2>
+        </div>
+
+        <div class="contact-grid reveal">
+          <form id="contactForm" class="card contact-card" novalidate>
+            <label for="name">Nama</label>
+            <input id="name" type="text" required>
+
+            <label for="email">Email</label>
+            <input id="email" type="email" required>
+
+            <label for="message">Pesan</label>
+            <textarea id="message" rows="4" required></textarea>
+
+            <button type="submit" class="btn primary">Kirim Pesan</button>
+            <div id="contactMsg" class="contact-msg" role="status" aria-live="polite"></div>
+          </form>
+
+          <aside class="card address-card">
+            <h4>Alamat</h4>
+            <p class="muted">Jl. Contoh No.1, Kota Contoh, Indonesia</p>
+            <p class="muted">Email: info@portalekonomi.id</p>
+            <p class="muted">Telepon: +62 812-3456-7890</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <small>&copy; <span id="year"></span> PortalEkonomi — Dibuat untuk tugas Pemrograman Berbasis Web</small>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
